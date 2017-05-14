@@ -1,23 +1,11 @@
 # Task Rest Example
 
-Rest Service test project for a friend using Slim PHP to interact with the MySQL Database.
+Slim PHP to interact with the MySQL Database.
+Users user authentication and allows user and allows tasks to be created viewed & deleted.
 
 Instructions get get installed
 
 1. Create database and run /sql/exampletasks.sql on created database.
 2. Install [Slim PHP Dependencies](https://www.slimframework.com/) using composer install in command line.
-3. Update Database information in /src/config/db.php
+3. Update Database information in /app/app.php in the \Slim\App Settings
 
-Endpoints:
-```
-Users
-GET,POST [domain/folder]/api/users
-GET [domain/folder]/api/user/{id}
-DELETE [domain/folder]/api/user/delete/{id}
-
-Posts
-GET,POST [domain/folder]/api/tasks
-GET [domain/folder]/api/task/{id}
-DELETE [domain/folder]/api/task/delete/{id}
-
-```

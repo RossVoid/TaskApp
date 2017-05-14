@@ -98,7 +98,4 @@ $app->add($container->get('csrf'));
 
 v::with('App\\Validation\\Rules\\');
 
-//User Routes
-require __DIR__ . '/routes/users.php';
-require __DIR__ . '/routes/tasks.php';
 require __DIR__ . '/routes.php';
