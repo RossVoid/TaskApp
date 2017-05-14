@@ -1,7 +1,7 @@
 # Task Rest Example
 
 Slim PHP to interact with the MySQL Database.
-Users user authentication and allows user and allows tasks to be created viewed & deleted.
+User authentication and allows users to create, delete & modify tasks.
 
 Instructions get get installed
 
