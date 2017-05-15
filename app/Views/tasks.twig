@@ -1,8 +1,58 @@
 {% extends 'templates/app.twig' %}
-
 {% block content %}
-
-    Tasks
-
+    <div class="tasks container">
+        <h1>Tasks</h1>
+        <table class = "table table-striped">
+            <thead>
+                <tr>
+                    <th>Task ID</th>
+                    <th>Assigned To</th>
+                    <th>Task Title</th>
+                    <th>Task Description</th>
+                    <th>Task State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {% set tasks = auth.tasks  %}
+                {% for task in tasks %}
+                    <th>{{task.id}}</th>
+                    <th>Assigned To</th>
+                    <th>Task Title</th>
+                    <th>Task Description</th>
+                    <th>Task State</th>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="newtask container">
+        <div class="panel-heading">
+            <h3>New Task Form</h2>
+        </div>
+        <div class="panel-body">
+            <form action="{{ path_for('tasks')}}" method="post" autocomplete="off">
+                <div class="form-group">
+                    <label for="tasktitle">Task Title</label>
+                    <input type="tasktitle" name="tasktitle" id="tasktitle" placeholder="Name of Task" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="taskdescription">Task Description</label>
+                    <textarea class="form-control" rows="5" id="taskdescription" name="taskdescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task_status">Task Status</label>
+                    <select class="form-control" id="taskstatus" name="taskstatus">
+                        <option>inactive</option>
+                        <option>in-progress</option>
+                        <option>complete</option>
+                    </select>
+                </div>
+                {{ csrf.field | raw }}
+                <button type="submit" class="btn btn-default">Submit New Task</button>
+            </form>
+        <div>
+        </div>
+    </div>
 {% endblock %}
 

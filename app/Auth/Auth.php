@@ -3,10 +3,11 @@
 namespace App\Auth;
 
 use App\Models\User;
+use App\Models\Task;
 
 class Auth
 {   
-     public function user()
+    public function user()
     {
         if (isset($_SESSION['user'])) {
             return User::find($_SESSION['user']);
@@ -36,5 +37,11 @@ class Auth
     public function logout()
     {
         unset($_SESSION['user']);
+    }
+
+    public function tasks()
+    {
+        $tasks = Task::where('id' , $_SESSION['user']);
+        return $tasks;
     }
 }

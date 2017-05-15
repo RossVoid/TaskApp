@@ -4,7 +4,9 @@ use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
 
 $app->group('', function(){
-    $this->get('/', 'TasksController:index')->setName('tasks');
+    
+    $this->get('/', 'TasksController:getTasks')->setName('tasks');
+    $this->post('/', 'TasksController:postTask');
     $this->get('/auth/signout', 'AuthController:getSignOut')->setName('auth.signout');
     $this->get('/auth/password/change', 'PasswordController:getChangePassword')->setName('auth.password.change');
     $this->post('/auth/password/change', 'PasswordController:postChangePassword');
@@ -16,7 +18,3 @@ $app->group('', function(){
     $this->get('/auth/signin', 'AuthController:getSignIn')->setName('auth.signin');
     $this->post('/auth/signin', 'AuthController:postSignIn');
 })->add(new GuestMiddleware($container));
-
-
-
-
