@@ -39,9 +39,4 @@ class Auth
         unset($_SESSION['user']);
     }
 
-    public function tasks()
-    {
-        $tasks = Task::where('id' , $_SESSION['user']);
-        return $tasks;
-    }
 }

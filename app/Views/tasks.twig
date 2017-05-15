@@ -14,14 +14,11 @@
             </thead>
             <tbody>
                 <tr>
-                {% set tasks = auth.tasks  %}
-                {% for task in tasks %}
-                    <th>{{task.id}}</th>
-                    <th>Assigned To</th>
-                    <th>Task Title</th>
-                    <th>Task Description</th>
-                    <th>Task State</th>
-                {% endfor %}
+                    <td>Task ID</td>
+                    <td>Assigned To</td>
+                    <td>Task Title</td>
+                    <td>Task Description</td>
+                    <td>Task State</td>
                 </tr>
             </tbody>
         </table>
