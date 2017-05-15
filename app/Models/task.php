@@ -14,5 +14,4 @@ class task extends Model
         'task_description',
         'task_status',
     ];
-    
 }

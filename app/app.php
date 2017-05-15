@@ -43,32 +43,6 @@ $container['flash'] = function ($container) {
     return new \Slim\Flash\Messages;
 };
 
-$container['view'] = function ($container) {
-
-    $view = new Slim\Views\Twig(__DIR__.'/views',[
-        'cache' => false,
-    ]);
-
-
-    $view->addExtension(new \Slim\Views\TwigExtension(
-
-        $container->router,
-        $container->request->getUri()
-
-    ));
-
-    $view->getEnvironment()->addGlobal('auth', [
-        'check' => $container->auth->check(),
-        'user' => $container->auth->user(),
-        'task' => $container->auth->tasks(),
-    ]);
-
-    $view->getEnvironment()->addGlobal('flash', $container->flash);
-
-    return $view;
-
-};
-
 $container['validator'] = function ($container) {
     return new \App\Validation\Validator;
 };
@@ -89,6 +63,30 @@ $container['csrf'] = function ($c) {
     return new \Slim\Csrf\Guard;
 };
 
+$container['view'] = function ($container) {
+
+    $view = new Slim\Views\Twig(__DIR__.'/views',[
+        'cache' => false,
+    ]);
+
+
+    $view->addExtension(new \Slim\Views\TwigExtension(
+
+        $container->router,
+        $container->request->getUri()
+
+    ));
+
+    $view->getEnvironment()->addGlobal('auth', [
+        'check' => $container->auth->check(),
+        'user' => $container->auth->user(),
+    ]);
+
+    $view->getEnvironment()->addGlobal('flash', $container->flash);
+
+    return $view;
+
+};
 
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\PersistentFormMiddleware($container));

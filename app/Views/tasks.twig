@@ -10,16 +10,30 @@
                     <th>Task Title</th>
                     <th>Task Description</th>
                     <th>Task State</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Task ID</td>
-                    <td>Assigned To</td>
-                    <td>Task Title</td>
-                    <td>Task Description</td>
-                    <td>Task State</td>
-                </tr>
+            {% if tasks %}
+                 {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.taskID }}</td>
+                        {% if userscount > 1 %}
+                            {% for user in users %}
+                                {% if task.id == user.id  %} 
+                                    <td>{{ user.name }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        {% elseif userscount == 1 %}
+                            <td>{{ users.name }}</td>
+                        {% endif %}
+                        <td>{{ task.task_title }}</td>
+                        <td>{{ task.task_description }}</td>
+                        <td>{{ task.task_status }}</td>
+                        <td><a href="" class="btn btn-info" role="button">Edit Task</a></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
             </tbody>
         </table>
     </div>
@@ -48,7 +62,6 @@
                 {{ csrf.field | raw }}
                 <button type="submit" class="btn btn-default">Submit New Task</button>
             </form>
-        <div>
         </div>
     </div>
 {% endblock %}

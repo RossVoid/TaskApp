@@ -11,7 +11,14 @@ class TasksController extends Controller
 {
     public function getTasks($request, $response)
     {   
-        return $this->view->render($response, 'tasks.twig');
+        $tasks = Task::all();
+        $users = User::all();
+
+        return $this->view->render($response, 'tasks.twig', [
+            'users' => $users,
+            'tasks' => $tasks,
+            'userscount' => count($users),
+        ]);
     }
 
     public function postTask($request, $response)
