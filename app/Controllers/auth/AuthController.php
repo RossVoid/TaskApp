@@ -11,7 +11,7 @@ class AuthController extends Controller
     public function getSignOut($request, $response)
     {
         $this->auth->logout();
-        return $response->withRedirect($this->router->pathFor('home')); 
+        return $response->withRedirect($this->router->pathFor('tasks')); 
     }
 
     public function getSignIn($request, $response)
@@ -30,7 +30,7 @@ class AuthController extends Controller
             $this->flash->addMessage('danger', 'Inncorrect Login Details!');
             return $response->withRedirect($this->router->pathFor('auth.signin'));
         }
-        return $response->withRedirect($this->router->pathFor('home'));
+        return $response->withRedirect($this->router->pathFor('tasks'));
     }
 
     public function getSignUp($request, $response)
@@ -63,6 +63,6 @@ class AuthController extends Controller
             $request->getParam('password')
         );
 
-        return $response->withRedirect($this->router->pathFor('home'));
+        return $response->withRedirect($this->router->pathFor('tasks'));
     }
 }

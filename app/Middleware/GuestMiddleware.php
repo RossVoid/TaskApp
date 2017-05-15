@@ -8,7 +8,7 @@ class GuestMiddleware extends Middleware
     {
         if($this->container->auth->check()){
             $this->container->flash->addMessage('warning','You are already signed in!');
-            return $response->withRedirect($this->container->router->pathFor('home'));
+            return $response->withRedirect($this->container->router->pathFor('tasks'));
         }
         $response = $next($request, $response);
         return $response;

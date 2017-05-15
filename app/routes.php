@@ -4,7 +4,7 @@ use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
 
 $app->group('', function(){
-    $this->get('/', 'HomeController:index')->setName('home');
+    $this->get('/', 'TasksController:index')->setName('tasks');
     $this->get('/auth/signout', 'AuthController:getSignOut')->setName('auth.signout');
     $this->get('/auth/password/change', 'PasswordController:getChangePassword')->setName('auth.password.change');
     $this->post('/auth/password/change', 'PasswordController:postChangePassword');

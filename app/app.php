@@ -72,8 +72,8 @@ $container['validator'] = function ($container) {
     return new \App\Validation\Validator;
 };
 
-$container['HomeController'] = function ($container) {
-    return new \App\Controllers\HomeController($container);
+$container['TasksController'] = function ($container) {
+    return new \App\Controllers\TasksController($container);
 };
 
 $container['AuthController'] = function ($container) {
