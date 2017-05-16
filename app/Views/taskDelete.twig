@@ -1,0 +1,45 @@
+{% extends 'templates/app.twig' %}
+{% block content %}
+<div class="newtask container">
+        <div class="panel-heading">
+            <h3>Delete Task {{task.id}}</h2>
+        </div>
+        <div class="panel-body">
+            <form action="{{ path_for('task.delete', {'taskID' : task.id}) }}" method="post" autocomplete="off">
+                <div class="form-group{{ errors.tasktitle ? ' has-error' : ''}}">
+                    <label for="tasktitle">Task Title</label>
+                    <input disabled type="tasktitle" name="tasktitle" id="tasktitle" placeholder="Name of Task" class="form-control" value="{{task.task_title}}">
+                    {% if errors.tasktitle %}
+                        <span class="help-block">{{ errors.tasktitle | first }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="assignedto">Assigned To</label>
+                    <select disabled class="form-control" id="assignedto" name="assignedto">
+                        {% for user in users %}
+                             <option {% if task.user_id == user.id  %}selected{% endif %}>{{ user.email }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group{{ errors.taskdescription ? ' has-error' : ''}}">
+                    <label for="taskdescription">Task Description</label>
+                    <textarea disabled class="form-control" rows="5" id="taskdescription" name="taskdescription">{{ task.task_description }}</textarea>
+                    {% if errors.taskdescription %}
+                        <span class="help-block">{{ errors.taskdescription | first }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="taskstatus">Task Status</label>
+                    <select disabled class="form-control" id="taskstatus" name="taskstatus">
+                        <option {% if task.task_status == "inactive" %}selected{% endif %}>inactive</option>
+                        <option {% if task.task_status == "in-progress" %}selected{% endif %}>in-progress</option>
+                        <option {% if task.task_status == "complete" %}selected{% endif %}>complete</option>
+                    </select>
+                </div>
+                {{ csrf.field | raw }}
+                <p>Please make sure you are done with this task before deleting!</p>
+                <button type="submit" class="btn btn-danger">Submit Delete Task</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

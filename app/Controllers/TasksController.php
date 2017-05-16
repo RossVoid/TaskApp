@@ -64,12 +64,47 @@ class TasksController extends Controller
         
         $userid = intval($user['id']);
 
+        $validation = $this->validator->validate($request, [
+            'tasktitle' => Respect::noWhitespace()->notEmpty(),
+            'taskdescription' => Respect::notEmpty(),
+        ]);
+
+        if ($validation->failed()){
+            $this->flash->addMessage('danger', 'Failed to update task #'. $taskID .'!');
+            return $response->withRedirect($this->router->pathFor('tasks'));
+        }
+
         Task::where('id', $taskID)->get()->first()->update([
             'user_id' => $userid,
             'task_title' => $request->getParam('tasktitle'),
             'task_description' => $request ->getParam('taskdescription'),
             'task_status' => $request ->getParam('taskstatus'),
         ]);
+
+        $this->flash->addMessage('success', 'Task #'. $taskID .' has been updated');
+
+        return $response->withRedirect($this->router->pathFor('tasks'));
+    }
+
+    public function getTaskDelete($request, $response, $args)
+    {   
+        $taskID = intval($args['taskID']);
+        $task = Task::where('id', $taskID)->get()->first();
+        $users = User::all();
+
+        return $this->view->render($response, 'taskDelete.twig', [
+            'task' => $task,
+            'users' => $users
+        ]);
+    }
+
+    public function deleteTask($request, $response, $args)
+    {
+        $taskID = intval($args['taskID']);
+
+        Task::where('id', $taskID)->get()->first()->delete();
+
+        $this->flash->addMessage('success', 'Task #'. $taskID .' has been Deleted');
 
         return $response->withRedirect($this->router->pathFor('tasks'));
     }

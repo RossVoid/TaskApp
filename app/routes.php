@@ -11,6 +11,8 @@ $app->group('', function(){
     $this->post('/auth/password/change', 'PasswordController:postChangePassword');
     $this->get('/task/{taskID}', 'TasksController:getTask')->setName('task.details');
     $this->post('/task/{taskID}', 'TasksController:updateTask')->setName('task.update');
+    $this->get('/task/delete/{taskID}', 'TasksController:getTaskDelete')->setName('task.confirmDelete');
+    $this->post('/task/delete/{taskID}', 'TasksController:deleteTask')->setName('task.delete');
 })->add(new AuthMiddleware($container));
 
 $app->group('', function(){

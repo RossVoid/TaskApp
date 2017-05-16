@@ -11,6 +11,7 @@
                     <th>Task Description</th>
                     <th>Task State</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
                         <td>{{ task.task_description }}</td>
                         <td>{{ task.task_status }}</td>
                         <td><a href="{{ path_for('task.details', {'taskID' : task.id}) }}" class="btn btn-info" role="button">Edit Task</a></td>
+                        <td><a href="{{ path_for('task.delete', {'taskID' : task.id}) }}" class="btn btn-danger" role="button">Delete Task</a></td>
                     </tr>
                 {% endfor %}
             {% endif %}
