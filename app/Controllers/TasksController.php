@@ -24,7 +24,7 @@ class TasksController extends Controller
     public function postTask($request, $response)
     {
         $validation = $this->validator->validate($request, [
-            'tasktitle' => Respect::noWhitespace()->notEmpty(),
+            'tasktitle' => Respect::notEmpty(),
             'taskdescription' => Respect::notEmpty(),
         ]);
 
@@ -65,7 +65,7 @@ class TasksController extends Controller
         $userid = intval($user['id']);
 
         $validation = $this->validator->validate($request, [
-            'tasktitle' => Respect::noWhitespace()->notEmpty(),
+            'tasktitle' => Respect::notEmpty(),
             'taskdescription' => Respect::notEmpty(),
         ]);
 
