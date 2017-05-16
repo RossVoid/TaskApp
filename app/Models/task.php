@@ -9,7 +9,7 @@ class task extends Model
     protected $table = "tasks";
     protected $fillable =
     [
-        'id',
+        'user_id',
         'task_title',
         'task_description',
         'task_status',

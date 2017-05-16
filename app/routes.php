@@ -1,5 +1,4 @@
 <?php
-
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
 
@@ -10,6 +9,8 @@ $app->group('', function(){
     $this->get('/auth/signout', 'AuthController:getSignOut')->setName('auth.signout');
     $this->get('/auth/password/change', 'PasswordController:getChangePassword')->setName('auth.password.change');
     $this->post('/auth/password/change', 'PasswordController:postChangePassword');
+    $this->get('/task/{taskID}', 'TasksController:getTask')->setName('task.details');
+    $this->post('/task/{taskID}', 'TasksController:updateTask')->setName('task.update');
 })->add(new AuthMiddleware($container));
 
 $app->group('', function(){
