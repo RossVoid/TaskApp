@@ -1,4 +1,4 @@
-# Task App Example for Tim
+# Task App Example
 
 Application interacts with database to create users then allow the users to add, modify & delete tasks.
 
