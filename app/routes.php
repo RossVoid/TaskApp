@@ -20,4 +20,11 @@ $app->group('', function(){
     $this->post('/auth/signup', 'AuthController:postSignUp');
     $this->get('/auth/signin', 'AuthController:getSignIn')->setName('auth.signin');
     $this->post('/auth/signin', 'AuthController:postSignIn');
+
+
 })->add(new GuestMiddleware($container));
+
+$app->get('/pull', function ($request, $response, $args) {
+    $output = shell_exec('git pull');
+    echo "<pre>$output</pre>";
+});
