@@ -65,7 +65,7 @@ $container['csrf'] = function ($c) {
 
 $container['view'] = function ($container) {
 
-    $view = new Slim\Views\Twig(__DIR__.'/views',[
+    $view = new Slim\Views\Twig(__DIR__.'/Views',[
         'cache' => false,
     ]);
 
