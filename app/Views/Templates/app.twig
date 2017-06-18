@@ -2,13 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Small Team Task App</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ base_url() }}/css/app.css">
   </head>
   <body>
     {% include 'templates/partials/nav.twig' %}
-    <div class"container">
+    <div class="container">
       {% include 'templates/partials/alert.twig' %}
       {% block content %}{% endblock %}
 

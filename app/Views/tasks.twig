@@ -2,33 +2,35 @@
 {% block content %}
     <div class="tasks container">
         <h1>Tasks</h1>
+        <hr>
         <table class = "table table-striped">
             <thead>
                 <tr>
-                    <th>Task ID</th>
-                    <th>Assigned To</th>
                     <th>Task Title</th>
+                    <th>Assigned To</th>
                     <th>Task Description</th>
                     <th>Task State</th>
-                    <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
             {% if tasks %}
                  {% for task in tasks %}
                     <tr>
-                        <td>{{ task.id }}</td>
+                        <td>
+                            <p>{{ task.task_title }}</p>
+                            <a href="{{ path_for('task.details', {'taskID' : task.id}) }}" class="btn btn-info" role="button">Edit</a>
+                            <a href="{{ path_for('task.delete', {'taskID' : task.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                        </td>
                         {% for user in users %}
                             {% if task.user_id == user.id  %} 
                                 <td>{{ user.name }}</td>
                             {% endif %}
                         {% endfor %}
-                        <td>{{ task.task_title }}</td>
                         <td>{{ task.task_description }}</td>
                         <td>{{ task.task_status }}</td>
-                        <td><a href="{{ path_for('task.details', {'taskID' : task.id}) }}" class="btn btn-info" role="button">Edit Task</a></td>
-                        <td><a href="{{ path_for('task.delete', {'taskID' : task.id}) }}" class="btn btn-danger" role="button">Delete Task</a></td>
+                        <td>
+                            
+                        </td>
                     </tr>
                 {% endfor %}
             {% endif %}
@@ -37,7 +39,8 @@
     </div>
     <div class="newtask container">
         <div class="panel-heading">
-            <h3>New Task Form</h2>
+            <h1>New Task Form</h1>
+            <hr>
         </div>
         <div class="panel-body">
             <form action="{{ path_for('tasks') }}" method="post" autocomplete="off">
